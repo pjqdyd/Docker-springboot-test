@@ -1,0 +1,32 @@
+
+------win10的docker启动redis服务----By pjqdyd
+
+(注意先双击启动docker desktop, 再 settings -> General ->勾选Expose daemon on tcp://..... , 即暴露容器的守护进程无TLS连接,
+ 在Shared Drives ->选择一个可以持久化数据的本机目录(可以用于挂载数据的目录))
+
+1. 查询镜像:
+  docker search redis
+
+2.拉取镜像:
+  docker pull redis
+
+3.启动镜像容器:
+  docker run -d --name myredis -p6666:6379 -v D:\dockerdata\dockerredis\:/data redis redis-server --appendonly yes --requirepass "123456"
+
+-d 是后台运行，
+--name是这个实例运行后的名字，
+-p是端口映射（前面是windows下的端口，后面是虚拟机的端口），
+-v 是挂载windows下共享的保存持久化数据的目录(路径不能有大写字母)，
+   redis 是要运行的镜像，
+   redis-server 在容器执行redis-server启动命令
+--appendonly yes 是开启持久化（数据会保存到挂载的windows的目录，这里就是 D:\dockerdata\dockerredis\  目录），
+–restart=always : 容器随docker启动，
+--requirepass "your passwd" 连接密码,
+
+4.进入容器的bash:
+  docker exec -it myredis bash
+
+5. 使用redis desktop连接容器的redis
+    host: 127.0.0.1
+    port: 6666
+    password: 123456

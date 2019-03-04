@@ -1,0 +1,30 @@
+
+-----win10的docker启动mysql容器----By pjqdyd
+
+(注意先双击启动docker desktop, 再 settings -> General ->勾选Expose daemon on tcp://..... , 即暴露容器的守护进程无TLS连接,
+ 在Shared Drives ->选择一个可以持久化数据的本机目录(可以用于挂载数据的目录))
+
+1.查询docker的mysql镜像:
+   docker search mysql
+
+2.拉取镜像 (mysql:tag 后面的tag指定版本,不加默认lastest) :
+  docker pull mysql
+
+3.从镜像生成容器: (注意映射的主机端口是3307, 因为我的主机安装了mysql占用了端口)
+  docker run -it --name mysql80 -p 3307:3306 -e MYSQL_ROOT_PASSWORD=123456 -d mysql
+
+4.查看启动的容器:
+  docker ps -a
+
+5.进入容器的bash:
+  docker exec -it mysql80 bash
+
+6.启动的容器的mysql:
+  mysql -u root -p
+
+7.查看到的版本是(mysql Server version: 8.0.15)
+
+8.在桌面使用Mysql Workbench连接容器的数据库
+   连接方式: Tcp/IP
+   Hostname: 127.0.0.1    port: 3307
+   账户:root  密码: 123456
