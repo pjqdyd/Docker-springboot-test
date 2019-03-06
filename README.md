@@ -5,7 +5,7 @@
  >(1): [Docker Desktop for Windows](https://hub.docker.com/editions/community/docker-ce-desktop-windows)(官网下载较慢)<br>
  (2): 在docker中获取并[运行mysql](https://github.com/pjqdyd/Docker-springboot-test/blob/master/guideTxt/docker-mysql)和[运行redis](https://github.com/pjqdyd/Docker-springboot-test/blob/master/guideTxt/docker-redis) (最新mysql 80版本,redis 5.0.3)<br>
  (3): docker下载好java:8的镜像(命令`docker pull java:8`)<br>
- (4): 连接容器中的mysql,并建一个数据库名为test, 用于连接测试<br>
+ (4): 连接容器中的mysql,并建一个数据库名为test, 用于连接测试 (如果想了解如何在启动mysql容器的同时执行sql建表请访问[我的简书](https://www.jianshu.com/p/1e4e465acb84))<br>
     
 1. 使用maven创建一个springboot的项目,并引入数据库相关操作的依赖,
 
